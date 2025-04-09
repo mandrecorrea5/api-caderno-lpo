@@ -1,0 +1,9 @@
+CREATE TABLE reset_tokens (
+    id UUID PRIMARY KEY,
+    usuario_id UUID NOT NULL,
+    token VARCHAR(100) NOT NULL UNIQUE,
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    expiracao TIMESTAMP NOT NULL,
+    status INT NOT NULL DEFAULT 0,
+    CONSTRAINT fk_reset_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
