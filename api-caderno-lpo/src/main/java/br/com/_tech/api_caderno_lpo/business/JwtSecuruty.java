@@ -5,6 +5,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -15,9 +17,16 @@ import java.util.UUID;
 @Service
 public class JwtSecuruty {
   private static final String ISSUER = "caderno-lpo";
-  private static final String SECRET = "123-secret-mudar-para-env";
 
-  private final Algorithm algorithm = Algorithm.HMAC256(SECRET);
+  @Value("${jwt.secret}")
+  private String secret;
+
+  private Algorithm algorithm;
+
+  @PostConstruct
+  public void init() {
+    this.algorithm = Algorithm.HMAC256(secret);
+  }
 
   public String gerarToken(UUID usuarioId, String email){
     return JWT.create()
