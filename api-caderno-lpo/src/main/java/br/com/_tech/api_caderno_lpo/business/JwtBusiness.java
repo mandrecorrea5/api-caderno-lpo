@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class JwtSecuruty {
+public class JwtBusiness {
   private static final String ISSUER = "caderno-lpo";
 
   @Value("${jwt.secret}")

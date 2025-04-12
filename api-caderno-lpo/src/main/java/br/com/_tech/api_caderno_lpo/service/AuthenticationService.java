@@ -1,21 +1,18 @@
 package br.com._tech.api_caderno_lpo.service;
 
-import br.com._tech.api_caderno_lpo.business.JwtSecuruty;
+import br.com._tech.api_caderno_lpo.business.JwtBusiness;
 import br.com._tech.api_caderno_lpo.domain.ResetToken;
 import br.com._tech.api_caderno_lpo.domain.Usuario;
 import br.com._tech.api_caderno_lpo.dto.LoginRequestDTO;
 import br.com._tech.api_caderno_lpo.dto.LoginResponseDTO;
 import br.com._tech.api_caderno_lpo.dto.ResetarSenhaRequestDTO;
-import br.com._tech.api_caderno_lpo.dto.UsuarioResponseDTO;
 import br.com._tech.api_caderno_lpo.enums.ResetTokenStatus;
 import br.com._tech.api_caderno_lpo.repository.ResetTokenRepository;
 import br.com._tech.api_caderno_lpo.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.logging.Log;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -24,7 +21,7 @@ public class AuthenticationService {
 
   private final UsuarioRepository usuarioRepository;
   private final ResetTokenRepository resetTokenRepository;
-  private final JwtSecuruty jwtSecuruty;
+  private final JwtBusiness jwtSecuruty;
   private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   public LoginResponseDTO login(LoginRequestDTO dto){
